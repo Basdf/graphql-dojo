@@ -1,0 +1,47 @@
+version: "3.2"
+
+services:
+  graphql-dojo-service:
+    image: graphql-dojo-service
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 8000
+    volumes:
+      - ../:/usr/src/app/
+    ports:
+      - 8000:8000
+      - 10000:10000
+    environment:
+      - DEBUGGER=True
+      - VERSION=0.0.3
+      - TITLE=Brains Service DB
+      - DESCRIPTION=Database service for Brains
+      - ENVIRONMENT=dev
+      - DATABASE_URL=postgresql+asyncpg://postgres:postgres@graphql-dojo-db:5432/graphql_dev
+
+    networks:
+      - graphql-dojo
+
+  graphql-dojo-db:
+    image: graphql-dojo-db
+    build:
+      context: ../db
+      dockerfile: Dockerfile
+    ports:
+      - "5436:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - graphql-dojo:/var/lib/postgresql/data
+    networks:
+      - graphql-dojo
+
+volumes:
+  graphql-dojo:
+    external: true
+
+networks:
+  graphql-dojo:
+    external: true

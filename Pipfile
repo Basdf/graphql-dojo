@@ -1,0 +1,31 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[packages]
+fastapi = "==0.79.*"
+gunicorn = "==20.1.*"
+uvicorn = {extras = ["standard"], version = "*"}
+uvloop = "==0.16.*"
+httpx = "==0.21.3"
+strawberry-graphql = {extras = ["fastapi"], version = "*"}
+asyncpg = "*"
+SQLAlchemy = {extras = ["asyncio"], version = "*"}
+tortoise-orm = "*"
+
+[dev-packages]
+black = "*"
+debugpy = "*"
+pre-commit = "*"
+pytest = "==7.1.2"
+pytest-asyncio = "==0.18.3"
+pytest-cov = "==3.0.0"
+pytest-mock = "==3.8.2"
+requests = "*"
+
+[requires]
+python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true
