@@ -1,11 +1,6 @@
 import strawberry
 
-from app.schemas.pydantic.gender import (
-    CreateGender,
-    GenderBase,
-    SearchGender,
-    UpdateGender,
-)
+from app.schemas.pydantic.gender import CreateGender, SearchGender, UpdateGender
 
 
 @strawberry.type(name="Gender")

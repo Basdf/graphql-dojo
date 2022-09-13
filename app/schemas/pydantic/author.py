@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
-from app.schemas.pydantic.gender import GenderBase, SearchGender
+from app.schemas.pydantic.gender import CreateGender, GenderBase, SearchGender
 
 
 class AuthorBase(BaseModel):
@@ -13,6 +13,7 @@ class AuthorBase(BaseModel):
 
 class CreateAuthor(BaseModel):
     name: str = Field(...)
+    genders: List[CreateGender] = Field(...)
 
 
 class SearchAuthor(BaseModel):

@@ -54,7 +54,7 @@ class CRUDBook:
     async def update_book(
         self,
         id: int,
-        payload: UpdateBook = None,
+        payload: UpdateBook,
     ) -> Book:
         async with get_session() as session:
             select_query = (
