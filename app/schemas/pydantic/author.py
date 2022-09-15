@@ -10,6 +10,9 @@ class AuthorBase(BaseModel):
     name: str = Field(...)
     genders: List[GenderBase] = Field(...)
 
+    class Config:
+        orm_mode = True
+
 
 class CreateAuthor(BaseModel):
     name: str = Field(...)
@@ -17,8 +20,8 @@ class CreateAuthor(BaseModel):
 
 
 class SearchAuthor(BaseModel):
+    id: Optional[int] = Field(None)
     name: Optional[str] = Field(None)
-    genders: List[SearchGender] = Field(None)
 
 
 class UpdateAuthor(BaseModel):

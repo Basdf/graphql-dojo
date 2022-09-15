@@ -7,6 +7,9 @@ class GenderBase(BaseModel):
     id: int = Field(...)
     name: str = Field(...)
 
+    class Config:
+        orm_mode = True
+
 
 class CreateGender(BaseModel):
     name: str = Field(...)
